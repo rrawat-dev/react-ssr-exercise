@@ -1,0 +1,1 @@
+export const index = import("../pages/index.js");
