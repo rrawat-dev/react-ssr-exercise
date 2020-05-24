@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../atoms/Loader/Loader.component';
 import StyledNewsList from './NewsList.style';
@@ -35,10 +35,6 @@ export default function NewsList(props) {
         });
     };
 
-    if (news.hits.length === 0) {
-        return <p className="no-results">Sorry, currently no results available for your request. Please try later.</p>
-    }
-
     return (
         <StyledNewsList>
             { props.fullPageLoader && <Loader /> }
@@ -55,32 +51,44 @@ export default function NewsList(props) {
                     </li>
                 </ul>
             </div>
-            <ul className="newsitems">
             {
-                news.hits.map(newsItem => (
-                        <li className="newsitem" key={newsItem.objectID}>
-                            <div className="title">{newsItem.title}</div>
-                            <div className="additional-info">
-                            {
-                            `${newsItem._domain ? '('+newsItem._domain+') ' : ''}by ${newsItem.author} ${newsItem._createdOn}`
-                            }                                
-                            </div>
-                            <div className="comments">
-                                {newsItem.num_comments || 0}
-                            </div>
-                            <div className="upvotes">
-                                <span className="upvote">{newsItem.points}</span>
-                                <button className="icon" onClick={() => upvoteNewsItem(newsItem)}>upvote</button>
-                            </div>
-                            <div className="hide-info">
-                                <button className="hide-link" onClick={() => hideNewsItem(newsItem.objectID)}>{" [ hide ] "}</button>
-                            </div>
-                        </li>
-                    )
+                news.hits.length === 0
+                &&
+                <p className="no-results">Sorry, currently no results available for your request. Please try later.</p>
+            }
+            {
+                news.hits.length > 0
+                &&
+                (
+                    <Fragment>
+                        <ul className="newsitems">
+                        {
+                            news.hits.map(newsItem => (
+                                <li className="newsitem" key={newsItem.objectID}>
+                                    <div className="title">{newsItem.title}</div>
+                                    <div className="additional-info">
+                                    {
+                                    `${newsItem._domain ? '('+newsItem._domain+') ' : ''}by ${newsItem.author} ${newsItem._createdOn}`
+                                    }                                
+                                    </div>
+                                    <div className="comments">
+                                        {newsItem.num_comments || 0}
+                                    </div>
+                                    <div className="upvotes">
+                                        <span className="upvote">{newsItem.points}</span>
+                                        <button className="icon" onClick={() => upvoteNewsItem(newsItem)}>upvote</button>
+                                    </div>
+                                    <div className="hide-info">
+                                        <button className="hide-link" onClick={() => hideNewsItem(newsItem.objectID)}>{" [ hide ] "}</button>
+                                    </div>
+                                </li>
+                            ))
+                        }
+                        </ul>
+                        <Pagination onPaginate={fetchNewsPage} totalPages={news.nbPages} currentPage={news.page} />
+                    </Fragment>
                 )
             }
-            </ul>
-            <Pagination onPaginate={fetchNewsPage} totalPages={news.nbPages} currentPage={news.page} />
             <div className="footer">React SSR Demo</div>
         </StyledNewsList>
     );
