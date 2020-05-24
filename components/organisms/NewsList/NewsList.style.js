@@ -196,4 +196,9 @@ export default styled.div`
         color: #666;
         padding: 1rem 0;
     }
+
+    .no-results {
+        text-align: center;
+        color: ${COLORS.orange};
+    }
 `;

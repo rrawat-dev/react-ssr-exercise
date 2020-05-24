@@ -35,6 +35,10 @@ export default function NewsList(props) {
         });
     };
 
+    if (news.hits.length === 0) {
+        return <p className="no-results">Sorry, currently no results available for your request. Please try later.</p>
+    }
+
     return (
         <StyledNewsList>
             { props.fullPageLoader && <Loader /> }
