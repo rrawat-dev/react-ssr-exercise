@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components'; 
 import { Provider } from 'react-redux'
 
+import GlobalStyle from '../../../styles/global.style';
 import { configureStore } from '../../../redux/store';
 import * as REACT_PAGES from '../../../tmp/reactPagesServerModule';
 
@@ -26,6 +27,7 @@ export default function(options) {
         //console.log('props: ', props);
         const html = renderToString(sheet.collectStyles(
             <Provider store={store}>
+                <GlobalStyle />
                 <PageComponent />
             </Provider>
         ));
