@@ -11,8 +11,9 @@ app.get('*', (req, res) => {
         `<!DOCTYPE html>
         <html>
             <head>
-            ${res.react.styles}
-            <script>window.__REACT_SSR_PAGE__ = "${res.react.page}";</script>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                ${res.react.styles}
+                <script>window.__REACT_SSR_PAGE__ = "${res.react.page}";</script>
             </head>
             <body>
                 <div id="root" class="App">${res.react.html}</div>
