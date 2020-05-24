@@ -2,11 +2,6 @@ export default function news(news = {}, action) {
     switch(action.type) {
         case 'FETCH_NEWS_SUCCESS':
             return {
-                ...action.payload,
-                hits: (news.hits || []).concat(action.payload.hits)
-            };
-        case 'FETCH_LATEST_NEWS_SUCCESS':
-            return {
                 ...action.payload
             };
         case 'FETCH_NEWS_ERROR':

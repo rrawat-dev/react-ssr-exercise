@@ -2,33 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../atoms/Loader/Loader.component';
 import StyledNewsList from './NewsList.style';
-
+import Pagination from '../../molecules/Pagination/Pagination.component';
 
 export default function NewsList(props) {
     const {news} = props;
-
-    const fetchMoreNews = () => {
-        props.fetchNews({
-            params: {
-                page: props.news.page + 1
-            }
-        });
-    };
-
-    const fetchLatestNews = () => {
-        props.fetchNews({
-            params: {
-                page: 0
-            }
-        });
-    };
 
     const hideNewsItem = (id) => {
         props.hideNewsItem(id);
     };
 
-    const upvoteNewsItem = (newsitem) => {
-        props.upvoteNewsItem(newsitem.objectID, newsitem._upvotes ? newsitem._upvotes + 1 : 1);
+    const upvoteNewsItem = (newsItem) => {
+        props.upvoteNewsItem(newsItem.objectID, newsItem.points ? newsItem.points + 1 : 1);
+    };
+
+    const fetchNewsPage = (page = 0) => {
+        window.history.pushState({page}, `Hacker news: Page ${page + 1}`, `?page=${page}`);
+
+        props.fetchNews({
+            params: {
+                page
+            }
+        });
     };
 
     return (
@@ -40,10 +34,10 @@ export default function NewsList(props) {
                         <span className="logo"><img src="images/y18.gif" alt="Site Logo" /></span>
                     </li>
                     <li className="link">
-                        <button onClick={fetchLatestNews}>top</button>
+                        <button onClick={fetchNewsPage}>top</button>
                     </li>
                     <li className="link">
-                        <button onClick={fetchLatestNews}>new</button>
+                        <button onClick={fetchNewsPage}>new</button>
                     </li>
                 </ul>
             </div>
@@ -55,7 +49,7 @@ export default function NewsList(props) {
                                 {newsItem.num_comments || 0}
                             </div>
                             <div className="upvotes">
-                                <span className="upvote">{newsItem._upvotes}</span>
+                                <span className="upvote">{newsItem.points}</span>
                                 <button className="icon" onClick={() => upvoteNewsItem(newsItem)}>upvote</button>
                             </div>
                             <div className="title">{newsItem.title}</div>
@@ -69,9 +63,10 @@ export default function NewsList(props) {
                 )
             }
                 <li>
-                    <button className="fetch-more-cta" onClick={fetchMoreNews}>Load more</button>
+                    <button className="fetch-more-cta" onClick={fetchNewsPage}>Load more</button>
                 </li>
             </ul>
+            <Pagination onPaginate={fetchNewsPage} totalPages={news.nbPages} currentPage={news.page} />
         </StyledNewsList>
     );
 }

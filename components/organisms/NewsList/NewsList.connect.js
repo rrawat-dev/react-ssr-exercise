@@ -26,7 +26,7 @@ function mapStateToProps(state) {
                 if (upvotedNewsItemsKeys.indexOf(item.objectID) > -1) {
                     return {
                         ...item,
-                        _upvotes: upvotedNewsItems[item.objectID]._upvotes
+                        points: upvotedNewsItems[item.objectID].points
                     };
                 }
 
@@ -40,7 +40,7 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchNews: (options) => dispatch(fetchNewsAsyncAction(options)),
         hideNewsItem: (id) => dispatch(hideNewsItemAsyncAction(id)),
-        upvoteNewsItem: (id, upvotes) => dispatch(upvoteNewsItemAsyncAction(id, upvotes)),
+        upvoteNewsItem: (id, points) => dispatch(upvoteNewsItemAsyncAction(id, points)),
     }
 }
 

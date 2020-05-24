@@ -56,12 +56,12 @@ export function hideNewsItem(id) {
     });
 }
 
-export function upvoteNewsItem(id, upvotes) {
+export function upvoteNewsItem(id, points) {
     return new Promise((resolve, reject) => {
         if (global && global.localStorage) {
             let upvotedNewsItems = JSON.parse(global.localStorage.getItem('upvotedNewsItems') || '{}');
             upvotedNewsItems[id] = {
-                _upvotes: upvotes
+                points
             };
 
             global.localStorage.setItem('upvotedNewsItems', JSON.stringify(upvotedNewsItems));
