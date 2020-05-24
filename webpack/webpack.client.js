@@ -1,8 +1,8 @@
 const path = require("path");
 
 module.exports = function(env, argv) {
-
     return {
+        "mode": process.env.NODE_ENV === "production" ? "production" : "development",
         "entry": "./src/browser/index.js",
         "output": {
             "path": path.resolve(process.env.PWD, "public"),

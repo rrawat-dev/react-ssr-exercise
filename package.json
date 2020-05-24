@@ -25,9 +25,10 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
+    "start": "node server.js",
+    "build": "node webpack/buildReactPagesModuleFile.js && NODE_ENV=production webpack",
     "dev": "node webpack/buildReactPagesModuleFile.js && webpack && node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
