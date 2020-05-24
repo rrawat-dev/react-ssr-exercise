@@ -1,8 +1,33 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 
-export default function Home() {
-    const [count, setCount] = useState(5);
-    return (
-        <h1 onClick={() => setCount(count + 1)}>{count}</h1>
-    );
+export default class Home extends Component {
+    static async getServerSideProps() {
+        console.log('getServerProps()');
+        return {
+            fname: "Rakesh"
+        };
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            count: 0
+        };
+
+        this.increment = this.increment.bind(this);
+    }
+
+
+    increment() {
+        this.setState({
+            count: this.state.count + 1
+        });
+    }
+
+    render() {
+        return (
+        <h1 onClick={this.increment}>{this.state.count}</h1>
+        );
+    }
 }

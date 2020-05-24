@@ -6,18 +6,17 @@ import * as REACT_PAGES from '../../../tmp/reactPagesServerModule';
 
 export default function(options) {
     //const manifest = require('../../dist/client/manifest.json');
-    return function (req, res, next) {
+    return async function (req, res, next) {
         const pages = Object.keys(REACT_PAGES);
         const basepath = req.path === '/' ? 'index' : req.path.split('/')[1];
         const page = REACT_PAGES[basepath] ? basepath : 'error';
-
-        console.log('>>>> pages ', pages);
-        console.log('>>>> req.path ', basepath);
-        console.log('>>>> page ', page);
         
+        const sheet = new ServerStyleSheet();
         const App = REACT_PAGES[page];
-        const sheet = new ServerStyleSheet(); 
-        const html = renderToString(sheet.collectStyles(<App />));
+        
+        const props = await (App.getServerSideProps ? App.getServerSideProps() : Promise.resolve({}));
+        console.log('props: ', props);
+        const html = renderToString(sheet.collectStyles(<App {...props} />));
         const styles = sheet.getStyleTags();
 
         res.react = {
