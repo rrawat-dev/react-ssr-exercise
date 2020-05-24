@@ -13,8 +13,5 @@ React Hydration
 Client bundling
 - 
 
-
-
-
 Build
 - move files to dist folder
