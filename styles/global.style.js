@@ -1,10 +1,15 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    html {
+
+    }
+
     body {
         margin: 0;
         padding: 0;
-        font-family: Helvetica, Arial, sans-serif;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 16px;
     }
 
     ul, li {

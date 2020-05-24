@@ -10,7 +10,6 @@ import * as REACT_PAGES from '../../../tmp/reactPagesServerModule';
 export default function(options) {
     //const manifest = require('../../dist/client/manifest.json');
     return async function (req, res, next) {
-        const pages = Object.keys(REACT_PAGES);
         const basepath = req.path === '/' ? 'index' : req.path.split('/')[1];
         const page = REACT_PAGES[basepath] ? basepath : 'error';
         const store = configureStore();

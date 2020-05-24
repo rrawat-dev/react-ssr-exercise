@@ -6,7 +6,6 @@ export default styled.div`
 
     .header {
         background-color: ${COLORS.orange};
-
         .logo {
             border: 2px solid ${COLORS.white};
             width: 18px;
@@ -26,20 +25,20 @@ export default styled.div`
         }
 
         .link {
-            padding: 5px 8px;
+            padding: 5px 6px;
             position: relative;
 
             &:last-child::before {
                 content: ' | ';
                 position: absolute;
-                left: 0;
-                top: 7px;
-                font-size: 1rem;
+                left: 0px;
+                top: 10px;
+                font-size: .6rem;
                 color: #333;
             }
 
             button {
-                font-size: 1rem;
+                font-size: .9rem;
                 color: ${COLORS.white};
                 border: none;
                 background: ${COLORS.orange};
@@ -52,35 +51,53 @@ export default styled.div`
         }
     }
 
+    .newsitems {
+        padding-top: 1rem;
+    }
+
     .newsitem {
         display: flex;
         flex-wrap: wrap;
-        font-size: .9rem;
-        padding: .8rem;
         line-height: 1.2rem;
+        padding: 8px 10px 0 10px;
+        font-size: 1rem;
+
+        > div {
+            margin-right: 10px;
+        }
 
         &:nth-child(even) {
             background-color: #d8d8d5;
         }
-
-        &:last-child {
-            border-bottom: 2px solid ${COLORS.orange};
-        }
     }
 
     .comments {
-        width: 2rem;
         text-align: right;
-        margin-right: .5rem; 
+        margin-right: 15px; 
+        font-size: .8rem;
+        color: #333;
+
+        @media ${device.laptop} {
+            flex-basis: auto;
+            order: 0;
+            width: 3rem;
+        }
     }
 
     .upvotes {
-        width: 2rem;
         text-align: right;
-        margin-right: 1.5rem;
+        margin-right: 15px;
         position: relative;
-        padding-right: 1rem;
+        padding-right: 12px;
+        font-size: .8rem;
+        color: #333;
  
+        @media ${device.laptop} {
+            flex-basis: auto;
+            order: 1;
+            width: 3rem;
+        }
+
         .icon {
             position: absolute;
             right: 0;
@@ -99,33 +116,46 @@ export default styled.div`
                 display: block;
                 width: 0px;
                 height: 0px;
-                border: 6px solid transparent;
-                border-bottom: 6px solid black;
+                border: 4px solid transparent;
+                border-bottom: 6px solid #666;
                 position: absolute;
                 right: 0;
-                top: 0;
+                top: 3px;
             }
         }
     }
 
     .title {
-        flex-basis: calc(100% - 7rem);
+        flex-basis: 100%;
+        font-size: .9rem;
+        margin-bottom: 5px;
 
-        @media ${device.tablet} {
+        @media ${device.laptop} {
             flex-basis: auto;
+            order: 2;
         }
     }
 
     .additional-info {
-        display: flex;
         flex-basis: 100%;
-        font-size: .8rem;
-        padding: .5rem;
+        font-size: .7rem;
         color: #666;
+        margin-bottom: 5px;
 
         @media ${device.tablet} {
             flex-basis: auto;
-            padding: 0 .5rem;
+        }
+
+        @media ${device.laptop} {
+            flex-basis: auto;
+            order: 3;
+        }
+    }
+
+    .hide-info {
+        @media ${device.laptop} {
+            flex-basis: auto;
+            order: 4;
         }
 
         .hide-link {
@@ -157,5 +187,13 @@ export default styled.div`
         &:focus {
             outline: none;
         }
+    }
+
+    .footer {
+        border-top: 2px solid ${COLORS.orange};
+        text-align: center;
+        font-size: .8rem;
+        color: #666;
+        padding: 1rem 0;
     }
 `;

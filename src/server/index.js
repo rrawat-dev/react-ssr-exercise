@@ -3,6 +3,7 @@ import reactssr from './middlewares/react.ssr';
 
 const app = express();
 app.use(express.static('public'));
+app.use(express.static('assets'));
 app.use(reactssr());
 
 app.get('*', (req, res) => {
@@ -14,7 +15,7 @@ app.get('*', (req, res) => {
             <script>window.__REACT_SSR_PAGE__ = "${res.react.page}";</script>
             </head>
             <body>
-                <div id="root">${res.react.html}</div>
+                <div id="root" class="App">${res.react.html}</div>
                 <script>var __REACT_SSR_APP_STATE__ = ${JSON.stringify(res.react.reduxState)}</script>
                 <script src="bundle.js"></script>
             </body>

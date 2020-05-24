@@ -12,10 +12,11 @@ export default function Pagination(props) {
 
     return (
         <StyledPagination>
-            Showing {props.currentPage + 1} of {props.totalPages}
-            <br />
-            <button className="pagination-cta" onClick={prev} disabled={props.currentPage === 0}>prev page</button>
-            <button className="pagination-cta" onClick={next} disabled={props.currentPage >= props.totalPages}>next page</button>
+            <p className="pagination-info">Showing Page {props.currentPage + 1} of {props.totalPages}</p>
+            <div>
+                <button className="pagination-cta" onClick={prev} disabled={props.currentPage === 0}>prev page</button>
+                <button className="pagination-cta" onClick={next} disabled={props.currentPage >= props.totalPages}>next page</button>
+            </div>
         </StyledPagination>
     );
 }
