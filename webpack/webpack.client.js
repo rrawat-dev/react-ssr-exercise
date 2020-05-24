@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = function(env, argv) {
+
     return {
         "entry": "./src/browser/index.js",
         "output": {

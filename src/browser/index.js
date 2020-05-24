@@ -1,6 +1,11 @@
 import React from 'react';
-import {render} from 'react-dom';
-import App from '../shared/App.js';
+import {hydrate} from 'react-dom';
 
+import * as REACT_PAGES from '../../tmp/reactPagesClientModule';
 
-render(<App />, document.getElementById('Root'));
+if (__REACT_SSR_PAGE__) {
+    (REACT_PAGES[__REACT_SSR_PAGE__]).then((module) => {
+        const Component = module.default;
+        hydrate(<Component />, document.getElementById('root'));
+    });
+}

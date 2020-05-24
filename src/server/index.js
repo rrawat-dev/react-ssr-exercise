@@ -4,7 +4,7 @@ import {renderToString} from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components'; 
 
 //import App from './../../pages/index';
-import * as REACT_PAGES from '../../tmp/reactpages';
+import * as REACT_PAGES from '../../tmp/reactPagesServerModule';
 
 const app = express();
 app.use(express.static('public'));
@@ -12,8 +12,6 @@ app.use(express.static('public'));
 
 app.get('*', (req, res) => {
     const App = REACT_PAGES['index'];
-    console.log('>>! 1', Object.keys(REACT_PAGES));
-    console.log('>>', App);
     const sheet = new ServerStyleSheet(); 
     const renderedApp = renderToString(sheet.collectStyles(<App />));
     const styles = sheet.getStyleTags();
@@ -23,9 +21,10 @@ app.get('*', (req, res) => {
         <html>
             <head>
             ${styles}
+            <script>window.__REACT_SSR_PAGE__ = "index";</script>
             </head>
             <body>
-                <div id="Root">${renderedApp}</div>
+                <div id="root">${renderedApp}</div>
                 <script src="bundle.js"></script>
             </body>
         </html>
