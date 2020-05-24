@@ -1,24 +1,31 @@
-var ReactDOMServer = require('react-dom/server');
-var config = require('../../config/config');
-const path = require('path');
-var fs = require('fs');
+import React from 'react';
+import {renderToString} from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components'; 
 
-module.exports = function(options) {
+import * as REACT_PAGES from '../../../tmp/reactPagesServerModule';
+
+export default function(options) {
     //const manifest = require('../../dist/client/manifest.json');
     return function (req, res, next) {
-        const page = req.path.split('/')[1] || 'home';
+        const pages = Object.keys(REACT_PAGES);
+        const basepath = req.path === '/' ? 'index' : req.path.split('/')[1];
+        const page = REACT_PAGES[basepath] ? basepath : 'error';
+
+        console.log('>>>> pages ', pages);
+        console.log('>>>> req.path ', basepath);
+        console.log('>>>> page ', page);
         
-        if (!global.REACT_SSR_PAGES[page]) {
-            next();
-        }
+        const App = REACT_PAGES[page];
+        const sheet = new ServerStyleSheet(); 
+        const html = renderToString(sheet.collectStyles(<App />));
+        const styles = sheet.getStyleTags();
 
-        if (!(global.REACT_SSR_PAGES[page].getServerProps)) {
-            res.send(ReactDOMServer.renderToString(global.REACT_SSR_PAGES[page]()));
-        }
+        res.react = {
+            page,
+            styles,
+            html
+        };
 
-        global.REACT_SSR_PAGES[page].getServerProps().then((props) => {
-            console.log('+++ ', props);
-            res.send(ReactDOMServer.renderToString(global.REACT_SSR_PAGES[page].default(props)));
-        });
+        next();
     };
 };
