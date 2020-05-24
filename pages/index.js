@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
 export default class Home extends Component {
-    static async getServerSideProps() {
-        console.log('getServerProps()');
-        return {
-            fname: "Rakesh"
-        };
+    static async getServerSideProps({store}) {
+        store.dispatch({
+            type: 'SHOW_FULLPAGE_LOADER',
+            payload: true
+        });
     }
 
     constructor(props) {

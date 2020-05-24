@@ -1,2 +1,2 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{19:function(n,r,e){"use strict";e.r(r),e.d(r,"default",(function(){return o}));var t=e(0),u=e.n(t);function o(){return u.a.createElement("h1",null,"Error 404")}}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{34:function(n,r,e){"use strict";e.r(r),e.d(r,"default",(function(){return o}));var t=e(0),u=e.n(t);function o(){return u.a.createElement("h1",null,"Error 404")}}}]);
 //# sourceMappingURL=2.bundle.js.map

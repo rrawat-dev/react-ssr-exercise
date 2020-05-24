@@ -1,7 +1,9 @@
 import React from 'react';
-import {renderToString} from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components'; 
+import { Provider } from 'react-redux'
 
+import { configureStore } from '../../../redux/store';
 import * as REACT_PAGES from '../../../tmp/reactPagesServerModule';
 
 export default function(options) {
@@ -10,19 +12,30 @@ export default function(options) {
         const pages = Object.keys(REACT_PAGES);
         const basepath = req.path === '/' ? 'index' : req.path.split('/')[1];
         const page = REACT_PAGES[basepath] ? basepath : 'error';
-        
+        const store = configureStore();
         const sheet = new ServerStyleSheet();
-        const App = REACT_PAGES[page];
+        const PageComponent = REACT_PAGES[page];
         
-        const props = await (App.getServerSideProps ? App.getServerSideProps() : Promise.resolve({}));
-        console.log('props: ', props);
-        const html = renderToString(sheet.collectStyles(<App {...props} />));
+        const context = {
+            req, 
+            res, 
+            store
+        };
+
+        const props = await (PageComponent.getServerSideProps ? PageComponent.getServerSideProps(context) : Promise.resolve({}));
+        //console.log('props: ', props);
+        const html = renderToString(sheet.collectStyles(
+            <Provider store={store}>
+                <PageComponent />
+            </Provider>
+        ));
         const styles = sheet.getStyleTags();
 
         res.react = {
             page,
             styles,
-            html
+            html,
+            reduxState: store.getState()
         };
 
         next();

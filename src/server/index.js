@@ -15,6 +15,7 @@ app.get('*', (req, res) => {
             </head>
             <body>
                 <div id="root">${res.react.html}</div>
+                <script>var __REACT_SSR_APP_STATE__ = ${JSON.stringify(res.react.reduxState)}</script>
                 <script src="bundle.js"></script>
             </body>
         </html>

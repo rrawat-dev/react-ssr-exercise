@@ -1,11 +1,19 @@
 import React from 'react';
 import {hydrate} from 'react-dom';
+import { Provider } from 'react-redux'
 
+import { configureStore } from '../../redux/store';
 import * as REACT_PAGES from '../../tmp/reactPagesClientModule';
 
 if (__REACT_SSR_PAGE__) {
     (REACT_PAGES[__REACT_SSR_PAGE__]).then((module) => {
+        const store = configureStore(window.__REACT_SSR_APP_STATE__ || {});
         const Component = module.default;
-        hydrate(<Component />, document.getElementById('root'));
+        hydrate(
+            <Provider store={store}>
+                <Component />
+            </Provider>, 
+            document.getElementById('root')
+        );
     });
 }
