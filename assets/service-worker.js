@@ -1,4 +1,4 @@
-var CACHE_NAME = 'React-SSR-cache-v0.0.1';
+var CACHE_NAME = 'React-SSR-cache-v0.0.2';
 var urlsToCache = [
   '/',
   'vendors~index.js',
