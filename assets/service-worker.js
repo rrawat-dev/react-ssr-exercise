@@ -1,6 +1,7 @@
 var CACHE_NAME = 'React-SSR-cache-v0.0.1';
 var urlsToCache = [
   '/',
+  'vendors~index.js',
   '/bundle.js',
   '/index.js',
   '/error.js',
