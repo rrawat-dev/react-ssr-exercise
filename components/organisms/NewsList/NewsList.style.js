@@ -3,8 +3,28 @@ import { COLORS } from '../../../styles/variables';
 import { device }  from '../../../styles/device.breakpoints';
 
 export default styled.div`
+    padding-top: 30px;
+
+    @media ${device.tablet} {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 0;
+    }
 
     .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        @media ${device.tablet} {
+            position: static;
+            top: 0;
+            left: auto;
+            right: auto;
+        }
+
         background-color: ${COLORS.orange};
         .logo {
             border: 2px solid ${COLORS.white};
@@ -51,15 +71,13 @@ export default styled.div`
         }
     }
 
-    .newsitems {
-        padding-top: 1rem;
-    }
+    .newsitems {}
 
     .newsitem {
         display: flex;
         flex-wrap: wrap;
         line-height: 1.2rem;
-        padding: 8px 10px 0 10px;
+        padding: 8px 10px 8px 10px;
         font-size: 1rem;
 
         > div {
@@ -195,6 +213,10 @@ export default styled.div`
         font-size: .8rem;
         color: #666;
         padding: 1rem 0;
+
+        @media ${device.tablet} {
+           margin-top: auto;
+        }
     }
 
     .no-results {

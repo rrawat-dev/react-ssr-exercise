@@ -14,6 +14,13 @@ export default styled.div`
     .pagination-cta {
         font-size: .8rem;
         padding: .4rem;
+        background: #d8d8d5;
+        border: 1px solid #666;
+        color: #333;
+
+        &:disabled {
+            color: #999;
+        }
 
         &:first-child {
             border-top-left-radius: 5px;
