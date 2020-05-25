@@ -6,7 +6,8 @@ module.exports = function(env, argv) {
         "entry": "./src/browser/index.js",
         "output": {
             "path": path.resolve(process.env.PWD, "public"),
-            "filename": "bundle.js"
+            "filename": "bundle.js",
+            "chunkFilename": "[name].js"
         },
         "devtool": "cheap-module-source-map",
         "module": {

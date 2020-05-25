@@ -1,6 +1,9 @@
 var CACHE_NAME = 'React-SSR-cache-v0.0.1';
 var urlsToCache = [
-  '/'
+  '/',
+  '/bundle.js',
+  '/index.js',
+  '/error.js'
 ];
 
 self.addEventListener('install', function(event) {
@@ -13,7 +16,7 @@ self.addEventListener('install', function(event) {
   );
 });
 
-/*
+
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request).catch(function() {
@@ -21,4 +24,3 @@ self.addEventListener('fetch', function(event) {
     })
   );
 });
-*/

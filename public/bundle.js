@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + ".bundle.js"
+/******/ 		return __webpack_require__.p + "" + ({"error":"error","vendors~index":"vendors~index","index":"index"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -35428,8 +35428,8 @@ var GlobalStyle = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createG
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "error", function() { return error; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "index", function() { return index; });
-var error = __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../pages/error.js */ "./pages/error.js"));
-var index = Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../pages/index.js */ "./pages/index.js"));
+var error = __webpack_require__.e(/*! import() | error */ "error").then(__webpack_require__.bind(null, /*! ../pages/error.js */ "./pages/error.js"));
+var index = Promise.all(/*! import() | index */[__webpack_require__.e("vendors~index"), __webpack_require__.e("index")]).then(__webpack_require__.bind(null, /*! ../pages/index.js */ "./pages/index.js"));
 
 /***/ })
 

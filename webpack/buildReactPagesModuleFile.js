@@ -9,7 +9,7 @@ const serverImports = [];
 dir.forEach((file) => {
     const filename = file.split('.')[0];
 
-    clientImports.push(`export const ${filename} = import("../pages/${file}");`);
+    clientImports.push(`export const ${filename} = import(/*webpackChunkName: "${filename}" */ "../pages/${file}");`);
     serverImports.push(`export {default as ${filename}} from "../pages/${file}";`);
 });
 

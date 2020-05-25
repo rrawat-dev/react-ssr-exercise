@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["error"],{
 
 /***/ "./pages/error.js":
 /*!************************!*\
@@ -20,4 +20,4 @@ function Error() {
 /***/ })
 
 }]);
-//# sourceMappingURL=2.bundle.js.map
+//# sourceMappingURL=error.js.map

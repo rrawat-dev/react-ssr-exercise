@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["index"],{
 
 /***/ "./components/atoms/Loader/Loader.component.js":
 /*!*****************************************************!*\
@@ -793,4 +793,4 @@ var COLORS = {
 /***/ })
 
 }]);
-//# sourceMappingURL=1.bundle.js.map
+//# sourceMappingURL=index.js.map

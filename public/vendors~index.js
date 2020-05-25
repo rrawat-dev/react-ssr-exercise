@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~index"],{
 
 /***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /*!**********************************************************************!*\
@@ -2792,4 +2792,4 @@ try {
 /***/ })
 
 }]);
-//# sourceMappingURL=0.bundle.js.map
+//# sourceMappingURL=vendors~index.js.map
