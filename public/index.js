@@ -690,7 +690,8 @@ function getDomain(url) {
 }
 
 function fetchNews(options) {
-  var url = 'https://hn.algolia.com/api/v1/search';
+  var isBrowser = global && global.localStorage ? true : false;
+  var url = isBrowser ? '/api/search' : 'https://hn.algolia.com/api/v1/search';
   return _http_http_service__WEBPACK_IMPORTED_MODULE_1__["default"].get(url, options || {}).then(function (res) {
     return _objectSpread(_objectSpread({}, res.data), {}, {
       hits: (res.data.hits || []).filter(function (item) {
@@ -703,6 +704,10 @@ function fetchNews(options) {
         });
       })
     });
+  })["catch"](function () {
+    return {
+      hits: []
+    };
   });
 }
 function hideNewsItem(id) {

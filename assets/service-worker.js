@@ -3,7 +3,9 @@ var urlsToCache = [
   '/',
   '/bundle.js',
   '/index.js',
-  '/error.js'
+  '/error.js',
+  '/api/search',
+  '/images/y18.gif'
 ];
 
 self.addEventListener('install', function(event) {

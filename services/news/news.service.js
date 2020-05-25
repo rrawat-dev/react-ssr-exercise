@@ -20,23 +20,30 @@ function getDomain(url) {
 }
 
 export function fetchNews(options) {
-    const url = 'https://hn.algolia.com/api/v1/search';
+    const isBrowser = global && global.localStorage ? true : false;
+    const url = isBrowser ? '/api/search' : 'https://hn.algolia.com/api/v1/search';
 
-    return httpService.get(url, (options || {})).then((res) => {
-        return {
-            ...res.data,
-            hits: (res.data.hits || [])
-                .filter(item => !!(item.title))
-                .map(item => {
-                    return {
-                        ...item,
-                        _createdOn: getCreatedOnText(new Date(item.created_at)),
-                        _domain: getDomain(item.url || ''),
-                        _upvotes: 0
-                    };
-                })
-        };
-    });
+    return httpService.get(url, (options || {}))
+        .then((res) => {
+            return {
+                ...res.data,
+                hits: (res.data.hits || [])
+                    .filter(item => !!(item.title))
+                    .map(item => {
+                        return {
+                            ...item,
+                            _createdOn: getCreatedOnText(new Date(item.created_at)),
+                            _domain: getDomain(item.url || ''),
+                            _upvotes: 0
+                        };
+                    })
+            };
+        })
+        .catch(() => {
+            return {
+                hits: []
+            };
+        });
 }
 
 

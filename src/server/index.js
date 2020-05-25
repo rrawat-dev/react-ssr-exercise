@@ -1,10 +1,18 @@
 import express from 'express';
 import reactssr from './middlewares/react.ssr';
+import {fetchNews} from '../../services/news/news.service';
 
 const app = express();
 app.use(express.static('public'));
 app.use(express.static('assets'));
 app.use(reactssr());
+
+app.get('/api/search', (req, res) => {
+  const options = {params: req.query || {}};
+  return fetchNews(options).then((news) => {
+    res.send(JSON.stringify(news));
+  });
+});
 
 app.get('*', (req, res) => {
     res.send(
