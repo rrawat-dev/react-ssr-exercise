@@ -10,12 +10,14 @@ export default function Pagination(props) {
         props.onPaginate(props.currentPage + 1);
     }
 
+    const page = props.currentPage + 1;
+
     return (
         <StyledPagination>
-            <p className="pagination-info">Showing Page {props.currentPage + 1} of {props.totalPages}</p>
+            <p className="pagination-info">Showing Page {page} of {props.totalPages}</p>
             <div>
-                <button className="pagination-cta" onClick={prev} disabled={props.currentPage === 0}>prev page</button>
-                <button className="pagination-cta" onClick={next} disabled={props.currentPage >= props.totalPages}>next page</button>
+                <button className="pagination-cta" onClick={prev} disabled={page === 1}>prev page</button>
+                <button className="pagination-cta" onClick={next} disabled={page >= props.totalPages}>next page</button>
             </div>
         </StyledPagination>
     );

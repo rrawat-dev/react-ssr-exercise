@@ -103,16 +103,17 @@ function Pagination(props) {
     props.onPaginate(props.currentPage + 1);
   };
 
+  var page = props.currentPage + 1;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination_style__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "pagination-info"
-  }, "Showing Page ", props.currentPage + 1, " of ", props.totalPages), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "Showing Page ", page, " of ", props.totalPages), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "pagination-cta",
     onClick: prev,
-    disabled: props.currentPage === 0
+    disabled: page === 1
   }, "prev page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "pagination-cta",
     onClick: next,
-    disabled: props.currentPage >= props.totalPages
+    disabled: page >= props.totalPages
   }, "next page")));
 }
 

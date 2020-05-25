@@ -30,6 +30,7 @@
     "eslint-plugin-react": "^7.20.0",
     "jest": "^26.0.1",
     "jest-dom": "^4.0.0",
+    "nodemon": "^2.0.4",
     "prop-types": "^15.7.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
@@ -37,7 +38,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "node webpack/buildReactPagesModuleFile.js && NODE_ENV=production webpack",
-    "dev": "node webpack/buildReactPagesModuleFile.js && babel-node src/server/index.js & webpack -w --config=webpack/webpack.client.js",
+    "dev": "node webpack/buildReactPagesModuleFile.js && nodemon --exec babel-node src/server/index.js & webpack -w --config=webpack/webpack.client.js",
     "test": "eslint . && jest",
     "lint": "eslint ."
   },
