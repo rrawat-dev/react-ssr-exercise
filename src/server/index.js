@@ -9,9 +9,11 @@ app.use(reactssr());
 app.get('*', (req, res) => {
     res.send(
         `<!DOCTYPE html>
-        <html>
+        <html lang="en">
             <head>
+                <title>React SSR Exercise</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="description" content="This is a React server Side Rendered App to show feed from hacker news API.">
                 ${res.react.styles}
                 <script>window.__REACT_SSR_PAGE__ = "${res.react.page}";</script>
             </head>

@@ -1,6 +1,6 @@
 {
-    "name": "React SSR POC",
-    "short_name": "react-ssr-poc",
+    "name": "React SSR Exercise",
+    "short_name": "React-SSR",
     "icons": [{
         "src": "/icon-192x192.png",
         "sizes": "192x192",
@@ -12,6 +12,6 @@
       }],
     "start_url": "/",
     "display": "standalone",
-    "background_color": "white",
-    "theme_color": "orange"
+    "background_color": "#ff6600",
+    "theme_color": "#fff"
 }
