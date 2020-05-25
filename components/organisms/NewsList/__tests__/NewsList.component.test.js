@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
+import {render, fireEvent, screen} from '@testing-library/react'
 import NewsList from '../NewsList.component';
 
 import pageOneData from './mock-data/news-page-1.json';
@@ -31,7 +31,7 @@ test('should render news item correctly', () => {
     const additionalInfo = container.querySelector('.newsitem .additional-info').textContent;
     
     expect(comments).toBe('436');
-    expect(upvotes).toBe('');
+    expect(upvotes).toBe('6015');
     expect(title).toBe('Stephen Hawking has died');
     expect(additionalInfo.indexOf('by Cogito') > -1).toBe(true);
 });
@@ -50,22 +50,6 @@ test('should call hideNewsItem prop function on hide cta click', () => {
     expect(hideNewsItem).toHaveBeenCalledTimes(1);
 });
 
-
-test('should call fetchNews prop function on more cta click', () => {
-    const fetchNews = jest.fn();
-    const { container } = render(<NewsList
-        news={pageOneData}
-        fetchNews={fetchNews}
-        hideNewsItem={() => {}}
-        upvoteNewsItem={()=>{}}
-    />);
-
-    fireEvent.click(container.querySelector('.fetch-more-cta'));
-
-    expect(fetchNews).toHaveBeenCalledTimes(1);
-});
-
-
 test('should call upvoteNewsItem prop function on upvote cta click', () => {
     const upvoteNewsItem = jest.fn();
     const { container } = render(<NewsList
@@ -78,4 +62,19 @@ test('should call upvoteNewsItem prop function on upvote cta click', () => {
     fireEvent.click(container.querySelector('.upvotes .icon'));
 
     expect(upvoteNewsItem).toHaveBeenCalledTimes(1);
+});
+
+
+test('should call fetchNews prop function on next pagination cta click', () => {
+    const fetchNews = jest.fn();
+    const { container } = render(<NewsList
+        news={pageOneData}
+        fetchNews={fetchNews}
+        hideNewsItem={() => {}}
+        upvoteNewsItem={()=>{}}
+    />);
+
+    fireEvent.click(screen.getByText('next page'));
+
+    expect(fetchNews).toHaveBeenCalledTimes(1);
 });

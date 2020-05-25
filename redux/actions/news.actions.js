@@ -41,7 +41,6 @@ export function upvoteNewsItemSuccessAction(id, upvotes) {
 export function fetchNewsAsyncAction(options) {
     return (dispatch) => {
         dispatch(showFullPageLoaderAction(true));
-        console.log('options', options);
         return fetchNews(options).then((news) => {
             if (options && options.page === 0) {
                 dispatch(fetchLatestNewsSuccessAction(news));
