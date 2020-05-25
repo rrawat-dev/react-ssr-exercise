@@ -198,6 +198,7 @@ export default styled.div`
     }
 
     .no-results {
+        padding: 10px;
         text-align: center;
         color: ${COLORS.orange};
     }
