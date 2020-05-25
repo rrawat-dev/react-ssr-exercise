@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
-
+tmp
+public
 .react-ssr
 react-ssr-pages.js
+server.js
+server.js.map

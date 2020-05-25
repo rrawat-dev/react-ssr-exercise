@@ -13,6 +13,10 @@ dir.forEach((file) => {
     serverImports.push(`export {default as ${filename}} from "../pages/${file}";`);
 });
 
+if (!fs.existsSync('tmp')){
+    fs.mkdirSync('tmp');
+}
+
 fs.writeFileSync(
     "tmp/reactPagesClientModule.js",
     clientImports.join("\n"),

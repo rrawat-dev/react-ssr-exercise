@@ -17,6 +17,7 @@ export default styled.div`
         top: 0;
         left: 0;
         right: 0;
+        z-index: 9999;
 
         @media ${device.tablet} {
             position: static;
@@ -58,11 +59,15 @@ export default styled.div`
             }
 
             button {
-                font-size: .9rem;
+                font-size: 1rem;
                 color: ${COLORS.white};
                 border: none;
                 background: ${COLORS.orange};
                 cursor: pointer;
+
+                @media ${device.tablet} {
+                    font-size: .9rem;
+                }
 
                 &:hover {
                     text-decoration: underline;
