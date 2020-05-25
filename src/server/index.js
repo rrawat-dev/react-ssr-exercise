@@ -12,7 +12,10 @@ app.get('*', (req, res) => {
         <html lang="en">
             <head>
                 <title>React SSR Exercise</title>
+                <link rel="manifest" href="/manifest.json">
+                <link rel="apple-touch-icon" href="/icon-192x192.png">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="theme-color" content="#317EFB">
                 <meta name="description" content="This is a React server Side Rendered App to show feed from hacker news API.">
                 ${res.react.styles}
                 <script>window.__REACT_SSR_PAGE__ = "${res.react.page}";</script>
@@ -21,6 +24,19 @@ app.get('*', (req, res) => {
                 <div id="root" class="App">${res.react.html}</div>
                 <script>var __REACT_SSR_APP_STATE__ = ${JSON.stringify(res.react.reduxState)}</script>
                 <script src="bundle.js"></script>
+                <script>
+                if ("serviceWorker" in navigator) {
+                    window.addEventListener('load', function() {
+                      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                      }, function(err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                      });
+                    });
+                  }
+                  </script>
             </body>
         </html>
     `);
