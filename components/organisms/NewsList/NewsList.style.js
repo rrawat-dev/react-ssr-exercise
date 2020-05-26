@@ -8,7 +8,7 @@ export default styled.div`
     @media ${device.tablet} {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        min-height: 100vh;
         padding-top: 0;
     }
 
